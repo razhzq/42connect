@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import Logo from '../../assets/42logo.png';
 import { useNavigate } from 'react-router-dom'
 import { atom, useAtom } from 'jotai';
@@ -11,13 +10,8 @@ import { atom, useAtom } from 'jotai';
 export const userAtom = atom('');
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false)
   const [userId, setUserId] = useAtom(userAtom);
   const navigate = useNavigate();
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
 
   const handleLogin = () => {
     navigate('/chatroom')
