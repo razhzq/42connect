@@ -9,8 +9,8 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/chatroom" element={<Chatroom />} />
+        <Route  path="/" element={<Login />} />
+        <Route  path="/chatroom" element={<Chatroom />} />
         </Routes>
     </Router>
      
