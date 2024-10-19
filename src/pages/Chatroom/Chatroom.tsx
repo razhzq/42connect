@@ -21,10 +21,12 @@ export default function Chatroom() {
   const scrollAreaRef = useRef<HTMLDivElement>(null)
   const socketRef = useRef<Socket | null>(null)
   const userId = useAtomValue(userAtom);
-
+  
   useEffect(() => {
     // Initialize socket connection
-    socketRef.current = io('https://b84e-182-173-75-102.ngrok-free.app') // Replace with your server URL
+    socketRef.current = io('https://b84e-182-173-75-102.ngrok-free.app', {
+      transports: ['websocket']
+    }) // Replace with your server URL
 
     // Listen for incoming messages
     socketRef.current.on('message', (data: { text: string, sender: string }) => {
@@ -54,7 +56,7 @@ export default function Chatroom() {
       setMessages([...messages, newMessage])
       
       // Emit the message through the socket
-      socketRef.current.emit('message', { text: inputMessage })
+      socketRef.current.emit('message', { text: inputMessage, sender: userId })
       
       setInputMessage('')
     }
